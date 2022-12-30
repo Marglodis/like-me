@@ -1,14 +1,5 @@
 
-
-const { Pool } = require('pg')
- const pool = new Pool({
- host: 'postgresql-dev-mt.alwaysdata.net',
- user: 'dev-mt',
- password: 'Desafiolatam123',
- database: 'dev-mt_likeme',
- port:5432,
- allowExitOnIdle: true
-}) 
+pool = require('../config/db')
 
 const agregarPost = async (titulo, img,descripcion) => {
     const consulta = "INSERT INTO posts (titulo, img, descripcion) values ($1, $2, $3)";
