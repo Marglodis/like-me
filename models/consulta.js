@@ -1,5 +1,5 @@
 
-pool = require('../config/db')
+const pool = require('../config/db')
 
 const agregarPost = async (titulo, img,descripcion) => {
     const consulta = "INSERT INTO posts (titulo, img, descripcion) values ($1, $2, $3)";

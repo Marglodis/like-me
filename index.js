@@ -1,34 +1,11 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
+const routes = require("./routes/postsRoutes");
+
 const app = express();
-const { agregarPost, obtenerPosts, deletePost } = require("./models/consulta");
 
-app.use(express.json())
+app.use(express.json());
 app.use(cors());
+app.use(routes);
 
-app.use(express.static('views'))
-
-  app.get('/', () => {
-    res.sendFile(__dirname,"index.html")
-})
-
-app.get("/posts", async (req, res) => {
-  const posts = await obtenerPosts();
-  res.json(posts);
-});
-
-
-app.post("/posts", async (req, res) => {
-    const { titulo, url, descripcion } = req.body;
-    await agregarPost(titulo, url, descripcion);
-    res.send("Posts agregado con éxito");
-  });
-  
-app.delete("/posts/:id", async (req, res) => {
-    const { id } = req.params;
-    await deletePost(id);
-    res.send("Post eliminado");
-  });
-
-
-  app.listen(3000, console.log("SERVIDOR ENCENDIDO"));
+app.listen(3000, console.log("SERVIDOR ENCENDIDO"));

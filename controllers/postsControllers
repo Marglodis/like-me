@@ -1,0 +1,28 @@
+
+const controller = {}
+const { agregarPost, obtenerPosts, deletePost } = require("../models/consulta");
+
+controller.index = () => {
+    res.sendFile(__dirname,"index.html")
+}
+
+controller.get = async (req, res) => {
+    const posts = await obtenerPosts();
+    res.json(posts);
+  }
+
+  controller.post = async (req, res) => {
+    const { titulo, url, descripcion } = req.body;
+    await agregarPost(titulo, url, descripcion);
+    res.send("Posts agregado con éxito");
+  }
+
+
+  controller.delete = async (req, res) => {
+    const { id } = req.params;
+    await deletePost(id);
+    res.send("Post eliminado");
+  }
+
+
+module.exports = controller;
