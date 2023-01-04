@@ -14,10 +14,18 @@ const obtenerPosts = async () => {
     return rows
    }
    
+   const updatePost = async (id,like) =>{
+    const consulta = `UPDATE posts SET like=$2 where id=$1`;
+    const valores = [id,like];
+    const resultado =await pool.query(consulta,valores)
+    return(resultado);
+    
+ }
+
 const deletePost = async (id) =>{
     const consulta = `delete from posts where id=$1`;
     const resultado =await pool.query(consulta,[id])
     return(resultado);
  }
 
-   module.exports = { agregarPost, obtenerPosts,  deletePost}
+   module.exports = { agregarPost, obtenerPosts,  deletePost, updatePost}

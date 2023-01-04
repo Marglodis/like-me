@@ -1,17 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const controller = require('../controllers/postsControllers')
+const controller = require("../controllers/postsControllers");
 
-router.use(express.static('views'))
+router.use(express.static("views"));
 
-  router.get('/', controller.index )
+router.get("/", controller.index);
 
-  router.get("/posts", controller.get);
+router.get("/posts", controller.get);
 
-  router.post("/posts", controller.post);
-  
+router.post("/posts", controller.post);
+
+router.put("/posts/like/:id", controller.update);
+
 router.delete("/posts/:id", controller.delete);
-
-
 
 module.exports = router;
