@@ -18,11 +18,14 @@ controller.get = async (req, res) => {
   }
 
   controller.update = async (req, res) => {
+    try{
     const { id } = req.params;
-    const { like} = req.body;
-    
-    await updatePost(id,like);
-    res.send("Post actualizado");
+    await updatePost(id);
+    res.send("Post actualizado con éxito");
+  }
+  catch (error){
+      res.status(500).send(`Error en la actualización del POST:${req.params.id}`)
+  }
       }
 
 

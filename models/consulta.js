@@ -10,18 +10,16 @@ const agregarPost = async (titulo, img,descripcion) => {
 
 const obtenerPosts = async () => {
     const { rows } = await pool.query("SELECT * FROM posts")
-//    console.table(rows)
     return rows
    }
    
-   const updatePost = async (id,like) =>{
-    const consulta = `UPDATE posts SET like=$2 where id=$1`;
-    const valores = [id,like];
-    const resultado =await pool.query(consulta,valores)
-    return(resultado);
+const updatePost = async (id) => {
     
- }
-
+      const updateQuery = 'UPDATE posts SET likes=likes+1 WHERE id=$1';
+      const val = [id]
+      const resultadoUpdate = await pool.query(updateQuery, val);
+      return resultadoUpdate;
+   };
 const deletePost = async (id) =>{
     const consulta = `delete from posts where id=$1`;
     const resultado =await pool.query(consulta,[id])
