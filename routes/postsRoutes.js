@@ -8,6 +8,8 @@ router.get("/", controller.index);
 
 router.get("/posts", controller.get);
 
+router.get("/posts/:id", controller.getOnePost);
+
 router.post("/posts", controller.post);
 
 router.put("/posts/like/:id", controller.update);
